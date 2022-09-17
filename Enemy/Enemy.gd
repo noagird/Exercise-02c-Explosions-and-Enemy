@@ -42,15 +42,16 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Timer_timeout():
-	var Player = get_node_or_null("/root/Game/Player_Container")
+	var Player = get_node_or_null("/root/Game/Player_Container/Player")
 	Effects = get_node_or_null("/root/Game/Effects")
 	if Player != null and Effects != null:
-		var global = get_node("/root/Game/Player_Container")
+		var global = get_node("/root/Game/Enemy_Container/Enemy")
 		var bullet = Bullet.instance()
-		var d = global_position.angle_to_point(Player.global_position) - PI/2
+		var d = global_position.angle_to_point(Player.global_position) + 3*PI/2
 		bullet.rotation = d 
 		bullet.global_position = global.position + Vector2(0,-40).rotated(d)
 		Effects.add_child(bullet)
+	
 		
 		
 	
